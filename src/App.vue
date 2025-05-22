@@ -13,11 +13,13 @@ import { RouterLink, RouterView } from 'vue-router'
         <div class="nav-links">
           <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/projects">Projects</RouterLink>
+          <RouterLink to="/contact">Contact Me</RouterLink>
         </div>
 
       </v-app-bar>
     </nav>
-    <v-main>
+    <v-main class="app-container" style="background-color: #181818; color: white">
       <RouterView />
     </v-main>
   </v-app>
@@ -30,11 +32,12 @@ import { RouterLink, RouterView } from 'vue-router'
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 1rem;
+  padding: 30px;
 }
 
 nav a {
-  padding: 0 1rem;
+  /* top | right | bottom | left */
+  padding: 1rem 2rem 1rem 2rem;
   border-left: 1px solid var(--color-border);
   text-decoration: none;
   color: white;
@@ -50,5 +53,10 @@ nav a.router-link-exact-active {
 
 nav a.router-link-exact-active:hover {
   background-color: transparent;
+}
+
+.app-container {
+  margin-top: 3rem;
+  width: 100%;
 }
 </style>
