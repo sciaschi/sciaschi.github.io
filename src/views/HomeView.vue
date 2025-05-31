@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const meImg = new URL('@/assets/me.png', import.meta.url).href;
 const headerImg = new URL('@/assets/home-header-bg.jpg', import.meta.url).href;
-
 const skillsList = [
   "Laravel",
   "Vue 3",
@@ -37,7 +36,7 @@ skillsList.sort();
   </v-sheet>
   <v-container fluid>
     <v-row>
-      <v-col cols="6">
+      <v-col cols="12" sm="1" md="6">
         <v-card>
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-account-school" /> Education</v-card-title>
           <v-card-text>
@@ -45,14 +44,15 @@ skillsList.sort();
               <v-list-item>
                 Sullivan County Community College, Loch Sheldrake, NY — Game
                 and Simulation Development
-                <v-list-item-subtitle>August 2014 - June 2016</v-list-item-subtitle>
+                <v-list-item-subtitle class="pt-1">Associates in Computer Science</v-list-item-subtitle>
+                <v-list-item-subtitle class="py-3">August 2014 - June 2016</v-list-item-subtitle>
               </v-list-item>
             </v-list>
           </v-card-text>
         </v-card>
       </v-col>
 
-      <v-col cols="6">
+      <v-col sm="1" md="6">
         <v-card>
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-laptop" /> Skills</v-card-title>
           <v-card-text>
@@ -159,4 +159,16 @@ skillsList.sort();
   font-size: x-large;
   text-shadow: 0 1px black;
 }
+
+@media(max-width: 1280px) {
+  #info-header {
+    height: auto;
+    align-content: center;
+  }
+
+  #info-content {
+    display: block;
+  }
+}
+
 </style>
