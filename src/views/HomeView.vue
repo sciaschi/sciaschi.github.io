@@ -2,8 +2,8 @@
 import { useDisplay } from 'vuetify'
 import {computed} from "vue";
 
-const meImg = new URL('@/assets/me.png', import.meta.url).href;
-const headerImg = new URL('@/assets/home-header-bg.jpg', import.meta.url).href;
+const meImg = new URL('@/assets/images/me.png', import.meta.url).href;
+const headerImg = new URL('@/assets/images/home-header-bg.jpg', import.meta.url).href;
 const skillsList = [
   "Laravel",
   "Vue 3",
@@ -71,7 +71,7 @@ skillsList.sort();
   </v-sheet>
   <v-container fluid>
     <v-row>
-      <v-col cols="12" sm="1" md="6">
+      <v-col cols="12" sm="6" md="6">
         <v-card>
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-account-school" /> Education</v-card-title>
           <v-card-text>
@@ -87,7 +87,7 @@ skillsList.sort();
         </v-card>
       </v-col>
 
-      <v-col sm="1" md="6">
+      <v-col sm="6" md="6">
         <v-card>
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-laptop" /> Skills</v-card-title>
           <v-card-text>
