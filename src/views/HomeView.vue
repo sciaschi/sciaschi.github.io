@@ -114,7 +114,7 @@ skillsList.sort();
                   June 2022 – August 2022
                 </template>
                 <div>
-                  <div class="text-h6 pb-4">Unrelated, Taxi Service — Big Run, PA — Driver</div>
+                  <div class="text-h6 pb-4">Taxi Service, Big Run, PA — Driver</div>
                   <p>
                     Provides transportation services to passengers, ensuring timely and safe travel
                     to destinations. Responsibilities include navigating routes, maintaining vehicle
