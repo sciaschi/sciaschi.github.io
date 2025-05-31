@@ -21,15 +21,13 @@ const drawer = ref(false)
         <RouterLink to="/"><v-icon icon="mdi-home"></v-icon>Home</RouterLink>
         <a href="https://www.linkedin.com/in/sean-ciaschi-1b0b108b/" target="_blank"><v-icon icon="mdi-linkedin"></v-icon> LinkedIn</a>
         <a href="https://github.com/sciaschi" target="_blank"><v-icon icon="mdi-github"></v-icon> GitHub</a>
-        <RouterLink to="/projects"><v-icon icon="mdi-hammer"></v-icon> Projects</RouterLink>
       </div>
     </v-app-bar>
-    <v-navigation-drawer  v-if="isMobile" v-model="drawer" location="left" >
+    <v-navigation-drawer  v-if="isMobile" v-model="drawer" location="left">
       <v-list>
        <v-list-item> <RouterLink to="/"><v-icon icon="mdi-home"></v-icon>Home</RouterLink></v-list-item>
         <v-list-item><a href="https://www.linkedin.com/in/sean-ciaschi-1b0b108b/" target="_blank"><v-icon icon="mdi-linkedin"></v-icon> LinkedIn</a></v-list-item>
         <v-list-item><a href="https://github.com/sciaschi" target="_blank"><v-icon icon="mdi-github"></v-icon> GitHub</a></v-list-item>
-        <v-list-item><RouterLink to="/projects"><v-icon icon="mdi-hammer"></v-icon> Projects</RouterLink></v-list-item>
       </v-list>
     </v-navigation-drawer>
 

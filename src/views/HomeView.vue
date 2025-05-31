@@ -62,7 +62,7 @@ skillsList.sort();
     <div id="info-content">
       <v-img :src="meImg" rounded="circle" cover width="248" height="248" class="mx-15"></v-img>
       <v-container fluid id="description">
-        Hello, my name is Sean Ciaschi! I’m a web developer wholoves building things from the ground
+        Hello, my name is Sean Ciaschi! I’m a web developer who loves building things from the ground
         up. A lot of the time, you’ll find me hacking together websites, embedded systems, designing
         PCBs, or working on some other sort of electronics project. I’m especially into projects that
         blur the line between software and hardware and push the bounds of current technologies.
