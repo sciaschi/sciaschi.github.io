@@ -1,17 +1,37 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import {useDisplay} from "vuetify/framework";
+import {computed, ref} from "vue";
+const { mdAndDown } = useDisplay()
+
+// Timeline direction: vertical for md and smaller, horizontal otherwise
+const isMobile = computed(() => mdAndDown.value)
+
+const drawer = ref(false)
 </script>
 
 <template>
   <v-layout>
     <v-app-bar title="Sean Ciaschi's Portfolio" color="teal-darken-3">
-        <div class="nav-links">
-          <RouterLink to="/"><v-icon icon="mdi-home"></v-icon>Home</RouterLink>
-          <a href="https://www.linkedin.com/in/sean-ciaschi-1b0b108b/" target="_blank"><v-icon icon="mdi-linkedin"></v-icon> LinkedIn</a>
-          <a href="https://github.com/sciaschi" target="_blank"><v-icon icon="mdi-github"></v-icon> GitHub</a>
-          <RouterLink to="/projects"><v-icon icon="mdi-hammer"></v-icon> Projects</RouterLink>
-        </div>
+      <template v-slot:prepend>
+        <v-app-bar-nav-icon v-if="isMobile" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      </template>
+
+      <div class="nav-links" v-if="!isMobile">
+        <RouterLink to="/"><v-icon icon="mdi-home"></v-icon>Home</RouterLink>
+        <a href="https://www.linkedin.com/in/sean-ciaschi-1b0b108b/" target="_blank"><v-icon icon="mdi-linkedin"></v-icon> LinkedIn</a>
+        <a href="https://github.com/sciaschi" target="_blank"><v-icon icon="mdi-github"></v-icon> GitHub</a>
+        <RouterLink to="/projects"><v-icon icon="mdi-hammer"></v-icon> Projects</RouterLink>
+      </div>
     </v-app-bar>
+    <v-navigation-drawer  v-if="isMobile" v-model="drawer" location="left" >
+      <v-list>
+       <v-list-item> <RouterLink to="/"><v-icon icon="mdi-home"></v-icon>Home</RouterLink></v-list-item>
+        <v-list-item><a href="https://www.linkedin.com/in/sean-ciaschi-1b0b108b/" target="_blank"><v-icon icon="mdi-linkedin"></v-icon> LinkedIn</a></v-list-item>
+        <v-list-item><a href="https://github.com/sciaschi" target="_blank"><v-icon icon="mdi-github"></v-icon> GitHub</a></v-list-item>
+        <v-list-item><RouterLink to="/projects"><v-icon icon="mdi-hammer"></v-icon> Projects</RouterLink></v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
     <v-main>
       <v-container fluid class="pa-0">

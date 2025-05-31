@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useDisplay } from 'vuetify'
+import {computed} from "vue";
+
 const meImg = new URL('@/assets/me.png', import.meta.url).href;
 const headerImg = new URL('@/assets/home-header-bg.jpg', import.meta.url).href;
 const skillsList = [
@@ -19,6 +22,38 @@ const skillsList = [
   "TypeScript",
 ];
 
+const jobHistoryList = [
+  {
+    title: "FasTrax Solutions, Rock Hill, NY — Web Developer",
+    workedDates: "January 2017 - August 2019",
+    description: "Developed Point of Sale (POS) and business management software using the Laravel PHP framework to support retail operations and backend administration.",
+  },
+  {
+    title: "Greenshades Software, Remote — Junior Software Developer",
+    workedDates: "August 2019 - October 2020",
+    description: "Designed and developed an employee management system to streamline HR operations and general business workflows.",
+  },
+  {
+    title: "Home Depot — Matamoras, PA — Overnight Stocker",
+    workedDates: "October 2021 – March 2022",
+    description: "Responsible for unloading, stocking, and organizing merchandise in a retail or warehouse environment during overnight hours. Ensures shelves are replenished and inventory is accurate, while maintaining a clean and safe workspace.",
+  },
+  {
+    title: "Taxi Service, Big Run, PA — Driver",
+    workedDates: "October 2021 – March 2022",
+    description: "Provides transportation services to passengers, ensuring timely and safe travel to destinations. Responsibilities include navigating routes, maintaining vehicle cleanliness, and offering excellent customer service.",
+  },
+  {
+    title: "Movate, Remote — Game Content Moderator",
+    workedDates: "August 2022 – Present",
+    description: "Review and evaluate user-submitted usernames to ensure compliance with community guidelines, terms of service, and content policies.",
+  },
+]
+
+const { mdAndDown } = useDisplay()
+
+// Timeline direction: vertical for md and smaller, horizontal otherwise
+const timelineDirection = computed(() => mdAndDown.value ? 'vertical' : 'horizontal')
 skillsList.sort();
 </script>
 
@@ -68,70 +103,15 @@ skillsList.sort();
         <v-card>
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-laptop" /> Job History</v-card-title>
           <v-card-text>
-            <v-timeline direction="horizontal">
-              <v-timeline-item>
+            <v-timeline :direction="timelineDirection">
+              <v-timeline-item v-for="(job, index) in jobHistoryList" :key="index">
                 <template v-slot:opposite>
-                  January 2017 - August 2019
+                  {{job.workedDates}}
                 </template>
                 <div>
-                  <div class="text-h6 pb-4">FasTrax Solutions, Rock Hill, NY — Web Developer</div>
+                  <div class="text-h6 pb-4">{{job.title}}</div>
                   <p>
-                    Developed Point of Sale (POS) and business management software using
-                    the Laravel PHP framework to support retail operations and backend
-                    administration.
-                  </p>
-                </div>
-              </v-timeline-item>
-
-              <v-timeline-item>
-                <template v-slot:opposite>
-                  August 2019 - October 2020
-                </template>
-                <div>
-                  <div class="text-h6 pb-4">Greenshades Software, Remote — Junior Software Developer</div>
-                  <p>
-                    Designed and developed an employee management system to
-                    streamline HR operations and general business workflows.
-                  </p>
-                </div>
-              </v-timeline-item>
-
-              <v-timeline-item>
-                <template v-slot:opposite>
-                  October 2021 – March 2022
-                </template>
-                <div>
-                  <div class="text-h6 pb-4">Home Depot, Matamoras, PA — Overnight Freight Associate</div>
-                  <p>
-                    Responsible for unloading, stocking, and organizing merchandise in a retail or
-                    warehouse environment during overnight hours. Ensures shelves are replenished
-                    and inventory is accurate, while maintaining a clean and safe workspace.
-                  </p>
-                </div>
-              </v-timeline-item>
-              <v-timeline-item>
-                <template v-slot:opposite>
-                  June 2022 – August 2022
-                </template>
-                <div>
-                  <div class="text-h6 pb-4">Taxi Service, Big Run, PA — Driver</div>
-                  <p>
-                    Provides transportation services to passengers, ensuring timely and safe travel
-                    to destinations. Responsibilities include navigating routes, maintaining vehicle
-                    cleanliness, and offering excellent customer service.
-                  </p>
-                </div>
-              </v-timeline-item>
-              <v-timeline-item>
-                <template v-slot:opposite>
-                  August 2022 – Present
-                </template>
-                <div>
-                  <div class="text-h6 pb-4">Movate, Remote — Game Content Moderator</div>
-                  <p>
-                    Review and evaluate user-submitted usernames to ensure
-                    compliance with community guidelines, terms of service, and content
-                    policies.
+                    {{job.description}}
                   </p>
                 </div>
               </v-timeline-item>
