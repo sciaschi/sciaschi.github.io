@@ -3,26 +3,22 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <v-app color="black">
-    <nav>
-      <v-app-bar color="teal-darken-3">
-        <template v-slot:prepend>
-          <v-app-bar-title class="pl-4">Sean Ciaschi's Portfolio</v-app-bar-title>
-        </template>
-
+  <v-layout>
+    <v-app-bar title="Sean Ciaschi's Portfolio" color="teal-darken-3">
         <div class="nav-links">
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/projects">Projects</RouterLink>
-          <RouterLink to="/contact">Contact Me</RouterLink>
+          <RouterLink to="/"><v-icon icon="mdi-home"></v-icon>Home</RouterLink>
+          <a href="https://www.linkedin.com/in/sean-ciaschi-1b0b108b/" target="_blank"><v-icon icon="mdi-linkedin"></v-icon> LinkedIn</a>
+          <a href="https://github.com/sciaschi" target="_blank"><v-icon icon="mdi-github"></v-icon> GitHub</a>
+          <RouterLink to="/projects"><v-icon icon="mdi-hammer"></v-icon> Projects</RouterLink>
         </div>
+    </v-app-bar>
 
-      </v-app-bar>
-    </nav>
-    <v-main class="app-container" style="background-color: #181818; color: white">
-      <RouterView />
+    <v-main>
+      <v-container fluid class="pa-0">
+        <RouterView />
+      </v-container>
     </v-main>
-  </v-app>
+  </v-layout>
 </template>
 
 <style scoped>
@@ -35,28 +31,23 @@ import { RouterLink, RouterView } from 'vue-router'
   padding: 30px;
 }
 
-nav a {
+.nav-links a {
   /* top | right | bottom | left */
   padding: 1rem 2rem 1rem 2rem;
-  border-left: 1px solid var(--color-border);
+  border-left: 1px solid rgba(166, 166, 166, 0.5);
   text-decoration: none;
   color: white;
 }
 
-nav a:first-of-type {
+.nav-links a:first-of-type {
   border-left: none;
 }
 
-nav a.router-link-exact-active {
+.nav-links a.router-link-exact-active {
   color: yellow;
 }
 
-nav a.router-link-exact-active:hover {
+.nav-links a.router-link-exact-active:hover {
   background-color: transparent;
-}
-
-.app-container {
-  margin-top: 3rem;
-  width: 100%;
 }
 </style>
