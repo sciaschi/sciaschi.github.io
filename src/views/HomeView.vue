@@ -1,7 +1,21 @@
 <script setup lang="ts">
+import {computed, onMounted} from "vue";
 import { useDisplay } from 'vuetify'
-import {computed} from "vue";
+import { gsap } from "gsap";
 
+onMounted(() => {
+  gsap.from('.gradient-chip', {
+    opacity: 0,
+    y: 20,
+    scale: 0.9,
+    duration: 0.4,
+    ease: 'power2.out',
+    stagger: 0.07
+  })
+});
+
+const { mdAndDown } = useDisplay();
+const timelineDirection = computed(() => mdAndDown.value ? 'vertical' : 'horizontal')
 const meImg = new URL('@/assets/images/me.png', import.meta.url).href;
 const headerImg = new URL('@/assets/images/home-header-bg.jpg', import.meta.url).href;
 const skillsList = [
@@ -12,12 +26,11 @@ const skillsList = [
   "CSS",
   "Javascript",
   "Node.js",
-  "MySQL",
+  "SQL",
   "Docker",
   "ExpressJS",
   "Git",
   "Linux",
-  "MSSQL",
   "Microsoft Office",
   "TypeScript",
 ];
@@ -48,13 +61,25 @@ const jobHistoryList = [
     workedDates: "August 2022 – Present",
     description: "Review and evaluate user-submitted usernames to ensure compliance with community guidelines, terms of service, and content policies.",
   },
-]
+];
 
-const { mdAndDown } = useDisplay()
-
-// Timeline direction: vertical for md and smaller, horizontal otherwise
-const timelineDirection = computed(() => mdAndDown.value ? 'vertical' : 'horizontal')
 skillsList.sort();
+
+function scaleUp(event: Event) {
+  gsap.to(event.currentTarget, {
+    scale: 1.1,
+    duration: 0.3,
+    ease: 'power2.out'
+  })
+}
+
+function scaleDown(event: Event) {
+  gsap.to(event.currentTarget, {
+    scale: 1,
+    duration: 0.3,
+    ease: 'power2.inOut'
+  })
+}
 </script>
 
 <template>
@@ -69,6 +94,7 @@ skillsList.sort();
       </v-container>
     </div>
   </v-sheet>
+
   <v-container fluid>
     <v-row>
       <v-col cols="12" sm="6" md="6">
@@ -92,7 +118,10 @@ skillsList.sort();
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-laptop" /> Skills</v-card-title>
           <v-card-text>
             <div class="ga-2">
-                <v-chip v-for="(skill, index) in skillsList" :key="index" class="ma-1 gradient-chip pointer">{{skill}}</v-chip>
+                <v-chip v-for="(skill, index) in skillsList" :key="index"
+                        class="ma-1 gradient-chip pointer"
+                        @mouseenter="scaleUp"
+                        @mouseleave="scaleDown">{{skill}}</v-chip>
             </div>
           </v-card-text>
         </v-card>
@@ -121,7 +150,6 @@ skillsList.sort();
       </v-col>
     </v-row>
   </v-container>
-
 </template>
 
 <style>
