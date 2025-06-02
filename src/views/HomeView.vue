@@ -98,7 +98,7 @@ function scaleDown(event: Event) {
   <v-container fluid>
     <v-row>
       <v-col cols="12" sm="6" md="6">
-        <v-card height="200">
+        <v-card  id="edu-card" height="200">
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-account-school" /> Education</v-card-title>
           <v-card-text>
             <v-list>
@@ -114,7 +114,7 @@ function scaleDown(event: Event) {
       </v-col>
 
       <v-col sm="6" md="6">
-        <v-card height="200">
+        <v-card id="skills-card" height="200">
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-laptop" /> Skills</v-card-title>
           <v-card-text>
             <div class="ga-2">
@@ -212,6 +212,14 @@ function scaleDown(event: Event) {
 
   #info-content {
     display: block;
+  }
+
+  #skills-card {
+    height:auto !important;
+  }
+
+  #edu-card {
+    height:auto !important;
   }
 }
 
