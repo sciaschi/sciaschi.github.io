@@ -33,52 +33,98 @@ const skillsList = [
   "Linux",
   "Microsoft Office",
   "TypeScript",
+  "Time Management",
+  "Customer Service",
 ];
 
 const jobHistoryList = [
   {
+    id: "job-fastrax",
     title: "FasTrax Solutions, Rock Hill, NY — Web Developer",
     workedDates: "January 2017 - August 2019",
     description: "Developed Point of Sale (POS) and business management software using the Laravel PHP framework to support retail operations and backend administration.",
+    skills: ["Laravel", "Rest APIs", "SQL", "Git", "HTML", "CSS", "Javascript", "Microsoft Office"],
   },
   {
+    id: "job-greenshades",
     title: "Greenshades Software, Remote — Junior Software Developer",
     workedDates: "August 2019 - October 2020",
     description: "Designed and developed an employee management system to streamline HR operations and general business workflows.",
+    skills: ["Rest APIs", "SQL", "Git", "HTML", "CSS", "TypeScript", "Microsoft Office"],
   },
   {
+    id: "job-homedepot",
     title: "Home Depot — Matamoras, PA — Overnight Stocker",
     workedDates: "October 2021 – March 2022",
     description: "Responsible for unloading, stocking, and organizing merchandise in a retail or warehouse environment during overnight hours. Ensures shelves are replenished and inventory is accurate, while maintaining a clean and safe workspace.",
+    skills: ["Customer Service"],
   },
   {
+    id: "job-taxidriver",
     title: "Taxi Service, Big Run, PA — Driver",
     workedDates: "October 2021 – March 2022",
     description: "Provides transportation services to passengers, ensuring timely and safe travel to destinations. Responsibilities include navigating routes, maintaining vehicle cleanliness, and offering excellent customer service.",
+    skills: ["Time Management", "Customer Service"],
   },
   {
+    id: "job-movate",
     title: "Movate, Remote — Game Content Moderator",
     workedDates: "August 2022 – Present",
     description: "Review and evaluate user-submitted usernames to ensure compliance with community guidelines, terms of service, and content policies.",
+    skills: ["Time Management", "Customer Service", "Microsoft Office"],
   },
 ];
 
 skillsList.sort();
 
-function scaleUp(event: Event) {
-  gsap.to(event.currentTarget, {
-    scale: 1.1,
-    duration: 0.3,
-    ease: 'power2.out'
-  })
-}
 
 function scaleDown(event: Event) {
   gsap.to(event.currentTarget, {
     scale: 1,
     duration: 0.3,
     ease: 'power2.inOut'
-  })
+  });
+
+  resetJobHighlights();
+}
+
+function handleSkillHover(event: Event, skill: string) {
+  gsap.to(event.currentTarget, {
+    scale: 1.1,
+    duration: 0.3,
+    ease: 'power2.out'
+  });
+
+  gsap.utils.toArray<HTMLElement>('.job-entry').forEach(el => {
+    const job = jobHistoryList.find(j => j.id === el.dataset.id);
+    const dot = el.closest('.v-timeline-item')?.querySelector('.v-timeline-divider__inner-dot');
+
+    if (job && job.skills?.includes(skill)) {
+      gsap.to(el, { opacity: 1, scale: 1.02, duration: 0.2 });
+
+      if (dot) {
+        gsap.to(dot, { backgroundColor: '#00695C', scale: 1.2, duration: 0.2 });
+      }
+    } else {
+      gsap.to(el, { opacity: 0.4, scale: 1, duration: 0.2 });
+
+      if (dot) {
+        gsap.to(dot, { backgroundColor: 'rgb(var(--v-theme-on-surface))', scale: 1, duration: 0.2 });
+      }
+    }
+  });
+}
+
+function resetJobHighlights() {
+  gsap.to('.job-entry', { opacity: 1, scale: 1, duration: 0.2 });
+
+  gsap.utils.toArray<HTMLElement>('.v-timeline-divider__inner-dot').forEach(dot => {
+    gsap.to(dot, {
+      backgroundColor: 'rgb(var(--v-theme-on-surface))',
+      scale: 1,
+      duration: 0.2
+    });
+  });
 }
 </script>
 
@@ -118,10 +164,13 @@ function scaleDown(event: Event) {
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-laptop" /> Skills</v-card-title>
           <v-card-text>
             <div class="ga-2">
-                <v-chip v-for="(skill, index) in skillsList" :key="index"
+                <v-chip v-for="(skill, index) in skillsList"
+                        :key="index"
                         class="ma-1 gradient-chip pointer"
-                        @mouseenter="scaleUp"
-                        @mouseleave="scaleDown">{{skill}}</v-chip>
+                        @mouseenter="(e: Event) => handleSkillHover(e, skill)"
+                        @mouseleave="scaleDown">
+                  {{skill}}
+                </v-chip>
             </div>
           </v-card-text>
         </v-card>
@@ -133,15 +182,14 @@ function scaleDown(event: Event) {
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-laptop" /> Job History</v-card-title>
           <v-card-text>
             <v-timeline :direction="timelineDirection">
-              <v-timeline-item v-for="(job, index) in jobHistoryList" :key="index">
-                <template v-slot:opposite>
-                  {{job.workedDates}}
-                </template>
-                <div>
-                  <div class="text-h6 pb-4">{{job.title}}</div>
-                  <p>
-                    {{job.description}}
-                  </p>
+              <v-timeline-item
+                v-for="(job, index) in jobHistoryList"
+                :key="index"
+              >
+                <div class="job-entry" :data-id="job.id">
+                  <div class="text-caption text-grey pb-1">{{ job.workedDates }}</div>
+                  <div class="text-h6 pb-2">{{ job.title }}</div>
+                  <p>{{ job.description }}</p>
                 </div>
               </v-timeline-item>
             </v-timeline>
@@ -195,13 +243,14 @@ function scaleDown(event: Event) {
   background: rgb(var(--v-theme-on-surface));
   transition: background 500ms ease;
 }
-.v-timeline .v-timeline-divider__inner-dot:hover {
-  background: #00695C !important;
-  transition: background 500ms ease;
-}
 
 .pointer {
   cursor: default;
+}
+
+.text-caption {
+  font-size: 0.875rem;
+  color: gray;
 }
 
 @media(max-width: 1280px) {
@@ -222,5 +271,4 @@ function scaleDown(event: Event) {
     height:auto !important;
   }
 }
-
 </style>
