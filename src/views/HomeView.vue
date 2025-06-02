@@ -100,16 +100,32 @@ function handleSkillHover(event: Event, skill: string) {
     const dot = el.closest('.v-timeline-item')?.querySelector('.v-timeline-divider__inner-dot');
 
     if (job && job.skills?.includes(skill)) {
-      gsap.to(el, { opacity: 1, scale: 1.02, duration: 0.2 });
+      gsap.to(el, {
+        opacity: 1,
+        scale: 1.02,
+        duration: 0.2
+      });
 
       if (dot) {
-        gsap.to(dot, { backgroundColor: '#00695C', scale: 1.2, duration: 0.2 });
+        gsap.to(dot, {
+          backgroundColor: '#00695C',
+          scale: 1.2,
+          duration: 0.2
+        });
       }
     } else {
-      gsap.to(el, { opacity: 0.4, scale: 1, duration: 0.2 });
+      gsap.to(el, {
+        opacity: 0.4,
+        scale: 1,
+        duration: 0.2
+      });
 
       if (dot) {
-        gsap.to(dot, { backgroundColor: 'rgb(var(--v-theme-on-surface))', scale: 1, duration: 0.2 });
+        gsap.to(dot, {
+          backgroundColor: 'rgb(var(--v-theme-on-surface))',
+          scale: 1,
+          duration: 0.2
+        });
       }
     }
   });
@@ -189,7 +205,7 @@ function resetJobHighlights() {
                 <div class="job-entry" :data-id="job.id">
                   <div class="text-caption text-grey pb-1">{{ job.workedDates }}</div>
                   <div class="text-h6 pb-2">{{ job.title }}</div>
-                  <p>{{ job.description }}</p>
+                  <p id="job-description">{{ job.description }}</p>
                 </div>
               </v-timeline-item>
             </v-timeline>
@@ -208,15 +224,22 @@ function resetJobHighlights() {
 
 #info-content {
   display: inline-flex;
+  font-family: "Inter", serif;
 }
 
 #description {
   align-self: center;
+  font-family: "Inter", serif;
   font-size: x-large;
   text-shadow: 0 1px black;
 }
 
+#job-description {
+  font-family: "Inter", serif;
+}
+
 .gradient-chip {
+  font-family: "Inter", serif;
   transition: background 500ms ease;
 }
 

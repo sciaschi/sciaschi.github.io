@@ -14,3 +14,8 @@ a,
   transition: 0.4s;
   padding: 3px;
 }
+
+.text-h6 {
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}

@@ -1,39 +1,47 @@
-# .
+# Sean Ciaschi — Developer Portfolio
 
-This template should help get you started developing with Vue 3 in Vite.
+This is my personal portfolio website, built to showcase my experience, skills, and development work. It includes an interactive timeline of past jobs, a dynamic skill highlighting system, and a responsive layout built with Vue 3, Vuetify, and GSAP.
 
-## Recommended IDE Setup
+[View Portfolio](https://sciaschi.github.io)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Type Support for `.vue` Imports in TS
+## 🔧 Built With
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- **Vue 3** — Composition API
+- **Vuetify** — Responsive UI components
+- **GSAP** — Smooth animations and transitions
+- **Vite** — Lightning-fast dev environment
 
-## Customize configuration
+---
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## ✨ Features
 
-## Project Setup
+- **Responsive Design** — Fully mobile-compatible with smooth transitions between breakpoints.
+- **Skill-Based Highlights** — Hovering a skill will visually highlight relevant job history entries.
+- **Theming** — Custom color palette based on a deep teal primary theme.
+- **Lightweight** — Single-page architecture for simplicity and performance.
 
-```sh
+---
+
+## 📁 Project Structure
+
+src/ \
+├── assets/ # Profile images, background images \
+├── components/ # (Future: modularize into components if needed) \
+├── App.vue # Main layout and content \
+├── main.ts # App entry point
+
+---
+
+## 🚀 Setup & Development
+
+```bash
+# Install dependencies
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Start local dev server
 npm run dev
-```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
+# Build for production
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```

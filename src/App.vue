@@ -18,7 +18,7 @@ const drawer = ref(false)
       </template>
 
       <div class="nav-links" v-if="!isMobile">
-        <RouterLink to="/"><v-icon icon="mdi-home"></v-icon>Home</RouterLink>
+        <RouterLink to="/" activeClass="text-white"><v-icon icon="mdi-home"></v-icon> Home</RouterLink>
         <a href="https://www.linkedin.com/in/sean-ciaschi-1b0b108b/" target="_blank"><v-icon icon="mdi-linkedin"></v-icon> LinkedIn</a>
         <a href="https://github.com/sciaschi" target="_blank"><v-icon icon="mdi-github"></v-icon> GitHub</a>
       </div>
@@ -54,18 +54,18 @@ const drawer = ref(false)
   padding: 1rem 2rem 1rem 2rem;
   border-left: 1px solid rgba(166, 166, 166, 0.5);
   text-decoration: none;
-  color: white;
+  color: #B2DFDB;
 }
 
 .nav-links a:first-of-type {
   border-left: none;
 }
 
-.nav-links a.router-link-exact-active {
-  color: yellow;
+.nav-links a:active {
+  color: #ECEFF1;
 }
 
-.nav-links a.router-link-exact-active:hover {
-  background-color: transparent;
+.nav-links a:hover {
+  color: #1DE9B6;
 }
 </style>
