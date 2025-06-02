@@ -72,7 +72,7 @@ skillsList.sort();
   <v-container fluid>
     <v-row>
       <v-col cols="12" sm="6" md="6">
-        <v-card>
+        <v-card height="200">
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-account-school" /> Education</v-card-title>
           <v-card-text>
             <v-list>
@@ -88,11 +88,11 @@ skillsList.sort();
       </v-col>
 
       <v-col sm="6" md="6">
-        <v-card>
+        <v-card height="200">
           <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-laptop" /> Skills</v-card-title>
           <v-card-text>
             <div class="ga-2">
-                <v-chip v-for="(skill, index) in skillsList" :key="index" class="ma-1">{{skill}}</v-chip>
+                <v-chip v-for="(skill, index) in skillsList" :key="index" class="ma-1 gradient-chip pointer">{{skill}}</v-chip>
             </div>
           </v-card-text>
         </v-card>
@@ -138,6 +138,42 @@ skillsList.sort();
   align-self: center;
   font-size: x-large;
   text-shadow: 0 1px black;
+}
+
+.gradient-chip {
+  transition: background 500ms ease;
+}
+
+.gradient-chip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #00695C, #B2DFDB);
+  opacity: 0;
+  transition: opacity 500ms ease;
+  z-index: 0;
+}
+
+.gradient-chip:hover::before {
+  opacity: 1;
+}
+
+.gradient-chip > * {
+  position: relative;
+  z-index: 1;
+}
+
+.v-timeline .v-timeline-divider__inner-dot {
+  background: rgb(var(--v-theme-on-surface));
+  transition: background 500ms ease;
+}
+.v-timeline .v-timeline-divider__inner-dot:hover {
+  background: #00695C !important;
+  transition: background 500ms ease;
+}
+
+.pointer {
+  cursor: default;
 }
 
 @media(max-width: 1280px) {
