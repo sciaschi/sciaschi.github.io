@@ -62,7 +62,7 @@ const jobHistoryList = [
   {
     id: "job-taxidriver",
     title: "Taxi Service, Big Run, PA — Driver",
-    workedDates: "October 2021 – March 2022",
+    workedDates: "June 2022 – August 2022",
     description: "Provides transportation services to passengers, ensuring timely and safe travel to destinations. Responsibilities include navigating routes, maintaining vehicle cleanliness, and offering excellent customer service.",
     skills: ["Time Management", "Customer Service"],
   },
