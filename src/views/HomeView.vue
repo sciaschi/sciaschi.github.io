@@ -82,7 +82,7 @@ const projects = [
     image: new URL('@/assets/images/foxvox.png', import.meta.url).href,
     url: "https://foxvox.app",
     description: "A fully equipped chat application that's low overhead and optimized for video calling.",
-    skills: ["Vue3", "Rest APIs", "uWebSockets", "PostgresSQL", "Git", "HTML", "CSS", "Javascript"],
+    skills: ["Vue3", "Rest API", "uWebSockets", "PostgresSQL", "NodeJS", "HTML", "CSS", "Javascript"],
   },
 ];
 
@@ -245,8 +245,16 @@ function openUrl(url: string) {
                 {{ project.title }}
               </v-card-title>
 
-              <div style="padding:0 20px">
+              <div style="padding:5px 20px">
                 {{ project.description }}
+              </div>
+
+              <div style="padding:5px 10px">
+                <v-chip v-for="(skill, index) in project.skills"
+                        :key="index"
+                        class="ma-1 gradient-chip pointer">
+                  {{ skill }}
+                </v-chip>
               </div>
 
               <v-card-actions>
