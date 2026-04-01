@@ -18,7 +18,7 @@ const { mdAndDown } = useDisplay();
 const timelineDirection: ComputedRef<'vertical' | 'horizontal'> = computed(() => mdAndDown.value ? 'vertical' : 'horizontal')
 const meImg: string = new URL('@/assets/images/me.png', import.meta.url).href;
 const headerImg: string = new URL('@/assets/images/home-header-bg.jpg', import.meta.url).href;
-const skillsList : Array<string> = [
+const skillsList = [
   "Laravel",
   "Vue 3",
   "Rest APIs",
@@ -37,7 +37,7 @@ const skillsList : Array<string> = [
   "Customer Service",
 ];
 
-const jobHistoryList : Array<object> = [
+const jobHistoryList = [
   {
     id: "job-fastrax",
     title: "FasTrax Solutions, Rock Hill, NY — Web Developer",
@@ -75,7 +75,7 @@ const jobHistoryList : Array<object> = [
   },
 ];
 
-const projects: Array<object> = [
+const projects = [
   {
     id: "foxvox",
     title: "FoxVox",
