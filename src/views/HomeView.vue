@@ -153,6 +153,10 @@ function resetJobHighlights() {
     });
   });
 }
+
+function openUrl(url: string) {
+  window.open(url, '_blank');
+}
 </script>
 
 <template>
@@ -246,10 +250,11 @@ function resetJobHighlights() {
               </div>
 
               <v-card-actions>
+                <v-spacer></v-spacer>
                 <v-btn
-                  color="orange-lighten-2"
+                  color="teal-lighten-2"
                   text="Explore"
-
+                  @click="openUrl(project.url)"
                 ></v-btn>
               </v-card-actions>
             </v-card>
