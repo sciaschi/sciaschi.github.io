@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, onMounted} from "vue";
+import {computed, type ComputedRef, onMounted, ref} from "vue";
 import { useDisplay } from 'vuetify'
 import { gsap } from "gsap";
 
@@ -15,10 +15,10 @@ onMounted(() => {
 });
 
 const { mdAndDown } = useDisplay();
-const timelineDirection = computed(() => mdAndDown.value ? 'vertical' : 'horizontal')
-const meImg = new URL('@/assets/images/me.png', import.meta.url).href;
-const headerImg = new URL('@/assets/images/home-header-bg.jpg', import.meta.url).href;
-const skillsList = [
+const timelineDirection: ComputedRef<'vertical' | 'horizontal'> = computed(() => mdAndDown.value ? 'vertical' : 'horizontal')
+const meImg: string = new URL('@/assets/images/me.png', import.meta.url).href;
+const headerImg: string = new URL('@/assets/images/home-header-bg.jpg', import.meta.url).href;
+const skillsList : Array<string> = [
   "Laravel",
   "Vue 3",
   "Rest APIs",
@@ -37,7 +37,7 @@ const skillsList = [
   "Customer Service",
 ];
 
-const jobHistoryList = [
+const jobHistoryList : Array<object> = [
   {
     id: "job-fastrax",
     title: "FasTrax Solutions, Rock Hill, NY — Web Developer",
@@ -72,6 +72,17 @@ const jobHistoryList = [
     workedDates: "August 2022 – Present",
     description: "Review and evaluate user-submitted usernames to ensure compliance with community guidelines, terms of service, and content policies.",
     skills: ["Time Management", "Customer Service", "Microsoft Office"],
+  },
+];
+
+const projects: Array<object> = [
+  {
+    id: "foxvox",
+    title: "FoxVox",
+    image: new URL('@/assets/images/foxvox.png', import.meta.url).href,
+    url: "https://foxvox.app",
+    description: "A fully equipped chat application that's low overhead and optimized for video calling.",
+    skills: ["Vue3", "Rest APIs", "uWebSockets", "PostgresSQL", "Git", "HTML", "CSS", "Javascript"],
   },
 ];
 
@@ -209,6 +220,39 @@ function resetJobHighlights() {
                 </div>
               </v-timeline-item>
             </v-timeline>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-card>
+          <v-card-title class="pa-5" style="font-size:x-large;"><v-icon icon="mdi-laptop" />
+            Projects
+          </v-card-title>
+
+          <v-card-text>
+            <v-card v-for="(project, index) in projects" :key="index" class="mx-auto" max-width="344">
+              <v-img height="200px" :src="project.image"
+                     cover></v-img>
+
+              <v-card-title>
+                {{ project.title }}
+              </v-card-title>
+
+              <div style="padding:0 20px">
+                {{ project.description }}
+              </div>
+
+              <v-card-actions>
+                <v-btn
+                  color="orange-lighten-2"
+                  text="Explore"
+
+                ></v-btn>
+              </v-card-actions>
+            </v-card>
           </v-card-text>
         </v-card>
       </v-col>
